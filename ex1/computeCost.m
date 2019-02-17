@@ -13,7 +13,14 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+<<<<<<< HEAD
 theta = pinv(X'*X)* X'*y;
+=======
+predictions = X * theta;            %Get the predictions for the function  
+sqrErrors   = (predictions - y).^2;  %Get the squared errors of the predictions
+
+J = 1/(2*m) * sum(sqrErrors); %Compute the cost function
+>>>>>>> 189ac10692848b242f5a723c0b485874a1ca7532
 
 % =========================================================================
 
