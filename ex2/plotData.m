@@ -12,24 +12,18 @@ figure; hold on;
 %               examples and 'ko' for the negative examples.
 %
 
-<<<<<<< HEAD
+
 pos = find(y==1); neg = find(y==0);
 
 %Plot Examples
 plot(X(pos, 1), X(pos, 2), 'k+', 'LineWidth', 2, 'MarkerSize', 7);
 plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y','MarkerSize', 7);
-=======
+
 % Find Indices of Positive and Negative Examples
 pos = find(y==1); neg = find(y == 0);
 % Plot Examples
 plot(X(pos, 1), X(pos, 2), 'k+','LineWidth', 2, 'MarkerSize', 7);
 plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 7);
-
-
-
-
->>>>>>> 7ddb5f944afdcb21701933e6f36d9797dd067a58
-
 
 
 % =========================================================================
