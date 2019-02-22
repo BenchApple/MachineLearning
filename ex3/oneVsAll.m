@@ -49,16 +49,16 @@ X = [ones(m, 1) X];
 %                 initial_theta, options);
 %
 
+k=num_labels %The classifier for the 0 case is represented by the kth row
 
-
-
-
-
-
-
-
-
-
+for c = 1:k
+  initial_theta = zeros(n+1,1); %Set initial theta values
+  options = optimset('GradObj', 'on', 'MaxIter', 50); %Set options for fminunc
+  [theta] = fmincg(@(t)(lrCostFunction(t,X,(y==c),lambda)), ...
+            initial_theta, options); %Run fmincg to obtin the optimal theta.
+            
+  all_theta(c,:) = theta;
+endfor  
 
 % =========================================================================
 
