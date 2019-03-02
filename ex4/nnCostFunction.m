@@ -62,23 +62,13 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X = [ones(m,1) X];
+K = 10;
 
+% X(1,:) gives first row of X, the 400 pixels' grayscale value
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+J = (1/m)*sum(sum(-y*log((sigmoid(
+for k = 1:K
 
 % -------------------------------------------------------------
 
