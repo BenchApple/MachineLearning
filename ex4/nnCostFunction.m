@@ -77,7 +77,9 @@ y = temp;
 h1 = sigmoid(X * Theta1');
 h2 = sigmoid([ones(size(X,1), 1) h1] * Theta2');
 
-J = (1/m)*sum(sum((-y.*log(h2))-((1-y).*log(1-h2))));
+J = (((1/m)*sum(sum((-y.*log(h2))-((1-y).*log(1-h2))))) + ... 
+    ((lambda/(2*m))*((sum(sum(Theta1.^2)(2:end))) + ...
+    (sum(sum(Theta2.^2)(2:end))))));
 
 % -------------------------------------------------------------
 
