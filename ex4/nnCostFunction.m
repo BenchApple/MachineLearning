@@ -63,12 +63,21 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 X = [ones(m,1) X];
-K = 10;
+K = size(Theta2,1);
 
+temp = zeros(size(y)(1),K);
+for i = 1:size(y)(1)
+	temp(i,y(i)) = 1;
+endfor
+y = temp;
+
+% y is size 5000 x 10, 5000 vertical, 10 horizantal
 % X(1,:) gives first row of X, the 400 pixels' grayscale value
 
-J = (1/m)*sum(sum(-y*log((sigmoid(
-for k = 1:K
+h1 = sigmoid(X * Theta1');
+h2 = sigmoid([ones(size(X,1), 1) h1] * Theta2');
+
+J = (1/m)*sum(sum((-y.*log(h2))-((1-y).*log(1-h2))));
 
 % -------------------------------------------------------------
 
