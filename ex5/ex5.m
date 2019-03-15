@@ -104,7 +104,7 @@ pause;
 %                 see a graph with "high bias" -- Figure 3 in ex5.pdf 
 %
 
-lambda = 0;
+lambda = 100;
 [error_train, error_val] = ...
     learningCurve([ones(m, 1) X], y, ...
                   [ones(size(Xval, 1), 1) Xval], yval, ...
@@ -131,7 +131,7 @@ pause;
 %
 
 p = 8;
-
+fprintf("Polynomial Feature Mapping");
 % Map X onto Polynomial Features and Normalize
 X_poly = polyFeatures(X, p);
 [X_poly, mu, sigma] = featureNormalize(X_poly);  % Normalize
