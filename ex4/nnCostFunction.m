@@ -62,7 +62,6 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-X = [ones(m,1) X];
 K = size(Theta2,1);
 
 temp = zeros(size(y)(1),K);
@@ -74,13 +73,28 @@ y = temp;
 % y is size 5000 x 10, 5000 vertical, 10 horizantal
 % X(1,:) gives first row of X, the 400 pixels' grayscale value
 
-h1 = sigmoid(X * Theta1');
-h2 = sigmoid([ones(size(X,1), 1) h1] * Theta2');
+a1 = [ones(m, 1) X];
+z2 = a1 * Theta1';
+a2 = [ones(size(z2, 1), 1) sigmoid(z2)];
+z3 = a2*Theta2';
+H = a3 = sigmoid(z3);
 
-J = (((1/m)*sum(sum((-y.*log(h2))-((1-y).*log(1-h2))))) + ... 
+J = (((1/m)*sum(sum((-y.*log(a3))-((1-y).*log(1-a3))))) + ... 
     ((lambda/(2*m))*((sum(sum(Theta1.^2)(2:end))) + ...
     (sum(sum(Theta2.^2)(2:end))))));
 
+
+Sigma3 = a3 - y;
+sigmoidGradient([ones(size(z2, 1), 1) z2])(:, 2:end);
+Sigma2 = (Sigma3*Theta2 .* sigmoidGradient([ones(size(z2, 1), 1) z2]))(:, 2:end);
+
+
+Delta_1 = Sigma2'*a1;
+Delta_2 = Sigma3'*a2;
+
+
+Theta1_grad = Delta_1./m + (lambda/m)*[zeros(size(Theta1,1), 1) Theta1(:, 2:end)];
+Theta2_grad = Delta_2./m + (lambda/m)*[zeros(size(Theta2,1), 1) Theta2(:, 2:end)];
 % -------------------------------------------------------------
 
 % =========================================================================
