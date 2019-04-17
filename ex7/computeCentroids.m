@@ -29,7 +29,7 @@ centroids = zeros(K, n);
 for k=1:K
 	%% Holy hell I did it in one line, what the actual hell is this language.
 	% The first half (before multiplication), counts the amount of points assigned
-	% to the current centroid, by first gathering the unique elements of idx, 
+	% to the current centroid, by first gathering the unique elements of idx,
 	% then using histc to get the count of each of the elements
 	% The second half simply sums the points of each element in X where 
 	% idx shows that it's assigned to the current centroid.

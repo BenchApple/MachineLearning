@@ -25,9 +25,18 @@ for epsilon = min(pval):stepsize:max(pval)
 
     predictions = (pval < epsilon);
     
-    tp = (yval == predictions & yval == 1);
-    fp = (yval ~= predictions & predictions == 1);
-    fn = (yval ~= predictions & predictions == 0);
+    tp = (yval == 1 & predictions == 1);
+    fp = (yval == 0 & predictions == 1);
+    fn = (yval == 1 & predictions == 0);
+    
+    tp = histc(tp,unique(tp))(2);
+    fp = histc(fp,unique(fp))(2);
+    fn = histc(fn,unique(fn))(2);
+    
+    prec = tp / (tp + fp);
+    rec = tp / (tp + fn);
+    
+    F1 = (2*prec*rec)/(prec+rec);
 
     % =============================================================
 
